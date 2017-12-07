@@ -226,8 +226,8 @@ public class Negocio {
 	public Laboratorio consultaLaboratorio(Laboratorio lab) {
 		return labPersist.consulta(lab.getLaboratorio());
 	}
-	public ArrayList<Laboratorio> listarLaboratorios(String parametroBusca){
-		return labPersist.listar(parametroBusca);
+	public ArrayList<Laboratorio> listarLaboratorios(){
+		return labPersist.listar();
 	}
 
 	public Exame consultaExame(Exame ex) {

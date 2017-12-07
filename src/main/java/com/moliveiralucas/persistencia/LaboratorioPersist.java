@@ -127,7 +127,7 @@ public class LaboratorioPersist {
 	 * @param parametroBusca
 	 * @return Lista de laboratorios
 	 */
-	public ArrayList<Laboratorio> listar(String parametroBusca){
+	public ArrayList<Laboratorio> listar(){
 		ArrayList<Laboratorio> laboratorio = new ArrayList<Laboratorio>();
 		Laboratorio lab;
 		mConexaoMySQL = new ConexaoMySQL();
@@ -135,17 +135,13 @@ public class LaboratorioPersist {
 		ResultSet mResultSet = null;
 		Statement mStatement = null;
 		mConnection = mConexaoMySQL.abreConexaoBD();
-		String sql = "";
-		if(parametroBusca.equals("null")) {
-			sql = "SELECT * FROM laboratorio ORDER BY laboratorio";
-		}else {
-			sql = "SELECT * FROM laboratorio WHERE laboratorio LIKE '"+parametroBusca+"%' ORDER BY laboratorio";
-		}
+		String sql = "SELECT * FROM laboratorio ORDER BY laboratorio";
 		try {
 			mStatement = mConnection.createStatement();
 			mResultSet = mStatement.executeQuery(sql);
 			while(mResultSet.next()) {
 				lab = new Laboratorio();
+				lab.setLabID(mResultSet.getInt("labID"));
 				lab.setLaboratorio(mResultSet.getString("laboratorio"));
 				laboratorio.add(lab);
 			}

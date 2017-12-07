@@ -166,9 +166,9 @@ public class Service {
 		return gson.toJson(lab);
 	}
 
-	@RequestMapping(value = "/searchLabs/{laboratorio}", method = RequestMethod.GET, produces = "application/json")
-	public String searchLabs(@PathVariable String laboratorio) {
-		return gson.toJson(negocio.listarLaboratorios(laboratorio));
+	@RequestMapping(value = "/searchLabs/", method = RequestMethod.GET, produces = "application/json")
+	public String searchLabs() {
+		return gson.toJson(negocio.listarLaboratorios());
 	}
 
 	@RequestMapping(value = "/searchExame/{exame}", method = RequestMethod.GET, produces = "application/json")
