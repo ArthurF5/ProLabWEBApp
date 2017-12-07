@@ -234,8 +234,8 @@ public class Negocio {
 		return examePersist.consulta(ex.getExame());
 	}
 
-	public ArrayList<Exame> listarExames(String parametroBusca){
-		return examePersist.listar(parametroBusca);
+	public ArrayList<Exame> listarExames(){
+		return examePersist.listar();
 	}
 
 	public ArrayList<ExameLaboratorio> buscarExames(Exame exame){
@@ -280,8 +280,8 @@ public class Negocio {
 	public Cidade buscarCidade(String parametroBusca) {
 		return mCidadePersist.consulta(parametroBusca);
 	}
-	public ArrayList<Estado> listarEstados(String parametroBusca){
-		return mEstadoPersist.listarTodos(parametroBusca);
+	public ArrayList<Estado> listarEstados(){
+		return mEstadoPersist.listarTodos();
 	}
 	public Estado buscarEstado(String parametroBusca) {
 		return mEstadoPersist.consulta(parametroBusca);

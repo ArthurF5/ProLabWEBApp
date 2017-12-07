@@ -178,6 +178,11 @@ public class Service {
 		mExame = negocio.consultaExame(mExame);
 		return gson.toJson(mExame);
 	}
+	
+	@RequestMapping(value = "/searchAllExames/",method = RequestMethod.GET, produces = "application/json")
+	public String searchAllExames() {
+		return gson.toJson(negocio.listarExames());
+	}
 
 	@RequestMapping(value = "/searchLabExame/{exameID}", method = RequestMethod.GET, produces = "application/json")
 	public String searchExamePorLab(@PathVariable Integer exameID) {
@@ -195,6 +200,11 @@ public class Service {
 	@RequestMapping(value = "/searchEstado/{estado}", method = RequestMethod.GET, produces = "application/json")
 	public String searchEstado(@PathVariable String estado) {
 		return gson.toJson(negocio.buscarEstado(estado));
+	}
+	
+	@RequestMapping(value = "/searchAllUF/",method = RequestMethod.GET, produces = "application/json")
+	public String searchAllUF() {
+		return gson.toJson(negocio.listarEstados());
 	}
 
 	@RequestMapping(value = "/searchCidadePorEstado/{estadoID}")

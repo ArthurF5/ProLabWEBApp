@@ -125,7 +125,7 @@ public class ExamePersist {
 	 * @param parametroBusca
 	 * @return Uma lista de exames indicados por um trecho do nome ou todos os exames
 	 */
-	public ArrayList<Exame> listar(String parametroBusca){
+	public ArrayList<Exame> listar(){
 		ArrayList<Exame> exames = new ArrayList<Exame>();
 		Exame exame;
 		mConexaoMySQL = new ConexaoMySQL();
@@ -133,17 +133,13 @@ public class ExamePersist {
 		ResultSet mResultSet = null;
 		Statement mStatement = null;
 		mConnection = mConexaoMySQL.abreConexaoBD();
-		String sql = "";
+		String sql = "SELECT * FROM exame ORDER BY exame";
 		try {
-			if(!parametroBusca.equals("")) {
-				sql = "SELECT * FROM exame WHERE exame LIKE '"+parametroBusca+"%' ORDER BY exame";
-			}else {
-				sql = "SELECT * FROM exame ORDER BY exame";
-			}
 			mStatement = mConnection.createStatement();
 			mResultSet = mStatement.executeQuery(sql);
 			while(mResultSet.next()) {
 				exame = new Exame();
+				exame.setExameID(mResultSet.getInt("exameID"));
 				exame.setExame(mResultSet.getString("exame"));
 				exames.add(exame);
 			}

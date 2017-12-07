@@ -19,7 +19,7 @@ public class EstadoPersist {
 		ResultSet mResultSet = null;
 		Statement mStatement = null;
 		mConnection = mConexaoMySQL.abreConexaoBD();
-		String sql = "SELECT ufID FROM uf WHERE uf LIKE '"+uf.getUf()+"'";
+		String sql = "SELECT ufID FROM UF WHERE uf LIKE '"+uf.getUf()+"'";
 		try {
 			mStatement = mConnection.createStatement();
 			mResultSet = mStatement.executeQuery(sql);
@@ -39,7 +39,7 @@ public class EstadoPersist {
 		ResultSet mResultSet = null;
 		Statement mStatement = null;
 		mConnection = mConexaoMySQL.abreConexaoBD();
-		String sql = "SELECT * FROM uf WHERE uf LIKE '"+parametroBusca+"'";
+		String sql = "SELECT * FROM UF WHERE uf LIKE '"+parametroBusca+"'";
 		try {
 			mStatement = mConnection.createStatement();
 			mResultSet = mStatement.executeQuery(sql);
@@ -55,7 +55,7 @@ public class EstadoPersist {
 		return uf;
 	}
 
-	public ArrayList<Estado> listarTodos(String parametroBusca){
+	public ArrayList<Estado> listarTodos(){
 		ArrayList<Estado> mUF = new ArrayList<Estado>();
 		Estado uf;
 		mConexaoMySQL = new ConexaoMySQL();
@@ -63,12 +63,7 @@ public class EstadoPersist {
 		ResultSet mResultSet = null;
 		Statement mStatement = null;
 		mConnection = mConexaoMySQL.abreConexaoBD();
-		String sql;
-		if(parametroBusca.equals("null")) {
-			sql = "SELECT * FROM uf ORDER BY uf";
-		}else {
-			sql = "SELECT * FROM uf WHERE uf LIKE '"+parametroBusca+"%' ORDER BY uf";
-		}
+		String sql = "SELECT * FROM UF ORDER BY uf";;
 		try {
 			mStatement = mConnection.createStatement();
 			mResultSet = mStatement.executeQuery(sql);
