@@ -87,19 +87,18 @@ public class EnderecoPersist {
 		Statement mStatement = null;
 		PreparedStatement mPreparedStatement = null;
 		mConnection = mConexaoMySQL.abreConexaoBD();
-		String sql = "SELECT * FROM endereco WHERE labID = "+lab.getLabID()+" AND endereco 'LIKE "+end.getEndereco()+"'";
+		String sql = "SELECT * FROM endereco WHERE labID = "+lab.getLabID()+" AND rua LIKE '"+end.getLogradouro()+"'";
 		try {
 			mStatement = mConnection.createStatement();
 			mResultSet = mStatement.executeQuery(sql);
 			if(!mResultSet.next()) {
-				sql = "INSERT INTO endereco (labID, endereco, rua, cidade, estado, numero) VALUES (?, ?, ?, ?, ?, ?)";
+				sql = "INSERT INTO endereco (labID, rua, cidadeID, ufID, numero) VALUES (?, ?, ?, ?, ?)";
 				mPreparedStatement = mConnection.prepareStatement(sql);
 				mPreparedStatement.setInt(1, lab.getLabID());
-				mPreparedStatement.setString(2, end.getEndereco());
-				mPreparedStatement.setString(3, end.getLogradouro());
-				mPreparedStatement.setInt(4, end.getCidade());
-				mPreparedStatement.setInt(5, end.getEstado());
-				mPreparedStatement.setString(6, end.getNumero());
+				mPreparedStatement.setString(2, end.getLogradouro());
+				mPreparedStatement.setInt(3, end.getCidade());
+				mPreparedStatement.setInt(4, end.getEstado());
+				mPreparedStatement.setString(5, end.getNumero());
 				mPreparedStatement.executeUpdate();
 				mPreparedStatement.close();
 				retorno = 1;

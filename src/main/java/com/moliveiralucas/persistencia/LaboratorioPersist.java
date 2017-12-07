@@ -88,6 +88,7 @@ public class LaboratorioPersist {
 			sql = "UPDATE laboratorio SET laboratorio = ? WHERE labID = ?";
 			mPreparedStatement = mConnection.prepareStatement(sql);
 			mPreparedStatement.setString(1, lab.getLaboratorio());
+			mPreparedStatement.setInt(2, lab.getLabID());
 			mPreparedStatement.executeUpdate();
 			mPreparedStatement.close();
 			retorno = true;

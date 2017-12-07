@@ -80,13 +80,13 @@ public class Service {
 		return negocio.cadFilial(lab, end).toString();
 	}
 
-	@RequestMapping(value = "/atrExameLaboratorio/{labID}_{exameID}_{valor)", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody String atrExameLaboratorio(@PathVariable Integer labID, @PathVariable Integer exameID, @PathVariable Double valor) {
+	@RequestMapping(value = "/cadExameLab/{labID}_{exameID}_{valor}", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody String cadExameLab(@PathVariable Integer labID, @PathVariable Integer exameID, @PathVariable String valor) {
 		Laboratorio lab = new Laboratorio();
 		Exame exame = new Exame();
 		lab.setLabID(labID);
 		exame.setExameID(exameID);
-		exame.setValor(valor);
+		exame.setValor(Double.parseDouble(valor));
 		return negocio.atrExameLaboratorio(lab, exame).toString();
 	}
 
@@ -98,12 +98,12 @@ public class Service {
 		return negocio.attAdmin(usr).toString();
 	}
 
-	@RequestMapping(value = "/attExame/{exame}_{exameID)",method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/attExame/{exame}_{exameID}", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody String attExame(@PathVariable String exame, @PathVariable Integer exameID) {
-		Exame ex = new Exame();
-		ex.setExame(exame);
-		ex.setExameID(exameID);
-		return negocio.attExame(ex).toString();
+		Exame mExame = new Exame();
+		mExame.setExame(exame);
+		mExame.setExameID(exameID);
+		return negocio.attExame(mExame).toString();
 	}
 
 	@RequestMapping(value = "/attLaboratorio/{laboratorio}_{labID}", method = RequestMethod.GET, produces = "application/json")
@@ -178,7 +178,7 @@ public class Service {
 		mExame = negocio.consultaExame(mExame);
 		return gson.toJson(mExame);
 	}
-	
+
 	@RequestMapping(value = "/searchAllExames/",method = RequestMethod.GET, produces = "application/json")
 	public String searchAllExames() {
 		return gson.toJson(negocio.listarExames());
@@ -201,7 +201,7 @@ public class Service {
 	public String searchEstado(@PathVariable String estado) {
 		return gson.toJson(negocio.buscarEstado(estado));
 	}
-	
+
 	@RequestMapping(value = "/searchAllUF/",method = RequestMethod.GET, produces = "application/json")
 	public String searchAllUF() {
 		return gson.toJson(negocio.listarEstados());
