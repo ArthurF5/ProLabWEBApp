@@ -1,7 +1,5 @@
 package com.moliveiralucas.service;
 
-import java.util.ArrayList;
-
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 import com.moliveiralucas.modelo.Endereco;
 import com.moliveiralucas.modelo.Exame;
-import com.moliveiralucas.modelo.ExameLaboratorio;
 import com.moliveiralucas.modelo.Laboratorio;
 import com.moliveiralucas.modelo.Usuario;
 import com.moliveiralucas.negocio.Negocio;
@@ -198,14 +195,14 @@ public class Service {
 		return gson.toJson(negocio.listarEstados());
 	}
 
-	@RequestMapping(value = "/searchCidadePorEstado/{estadoID}")
+	@RequestMapping(value = "/searchCidadePorEstado/{estadoID}", method = RequestMethod.GET, produces = "application/json")
 	public String searchCidadeEstado(@PathVariable Integer estadoID) {
 		return gson.toJson(negocio.buscarCidadePorEstado(estadoID));
 	}
 	
-	@RequestMapping(value = "/searchFilial/{}")
-	public String searchFilial() {
-		return null;
+	@RequestMapping(value = "/searchFilial/{labID}", method = RequestMethod.GET, produces = "application/json")
+	public String searchFilial(@PathVariable Integer labID) {
+		return gson.toJson(negocio.buscarExames(labID));
 	}
 }
 
