@@ -176,21 +176,19 @@ public class Negocio {
 		}
 		return codRetorno;
 	}
-	public Integer excluiExame(Exame exame) {
+	public Integer excluiExame(Integer id) {
 		Integer excluir, codRetorno = 1;
-		if(exame != null) {
-			excluir = examePersist.excluir(examePersist.retornarID(exame));
-			if(excluir == 1) {
-				codRetorno = 2;
-			} else {
-				codRetorno = 5;
-			}
+		excluir = examePersist.excluir(id);
+		if(excluir == 1) {
+			codRetorno = 2;
+		} else {
+			codRetorno = 5;
 		}
 		return codRetorno;
 	}
-	public Integer excluiLaboratorio(Laboratorio lab) {
+	public Integer excluiLaboratorio(Integer id) {
 		Integer excluir, codRetorno = 1;
-		excluir = labPersist.excluir(lab);
+		excluir = labPersist.excluir(id);
 		if(excluir == 1) {
 			codRetorno = 2;
 		} else {

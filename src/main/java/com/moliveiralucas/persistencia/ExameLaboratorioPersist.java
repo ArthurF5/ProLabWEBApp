@@ -96,7 +96,7 @@ public class ExameLaboratorioPersist {
 		PreparedStatement mPreparedStatement = null;
 		mConnection = mConexaoMySQL.abreConexaoBD();
 		try {
-			String sql = "DELETE FROM exameLaboratorio WHERE exameID = ? AND labID = ";
+			String sql = "DELETE FROM exameLaboratorio WHERE exameID = ? AND labID = ?";
 			mPreparedStatement = mConnection.prepareStatement(sql);
 			mPreparedStatement.setInt(1, exame.getExameID());
 			mPreparedStatement.setInt(2, laboratorio.getLabID());

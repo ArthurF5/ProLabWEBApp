@@ -103,7 +103,7 @@ public class LaboratorioPersist {
 	 * @return 	1 - Excluido com Sucesso 
 	 * 			2 - Houve um erro ao excluir no banco verificar log
 	 */
-	public Integer excluir(Laboratorio lab) {
+	public Integer excluir(Integer id) {
 		Integer retorno = 0;
 		mConexaoMySQL = new ConexaoMySQL();
 		Connection mConnection = null;
@@ -113,7 +113,7 @@ public class LaboratorioPersist {
 		try {
 			sql = "DELETE FROM laboratorio WHERE labID = ?";
 			mPreparedStatement = mConnection.prepareStatement(sql);
-			mPreparedStatement.setInt(1, retornaID(lab));
+			mPreparedStatement.setInt(1, id);
 			mPreparedStatement.execute();
 			mPreparedStatement.close();
 			retorno = 1;

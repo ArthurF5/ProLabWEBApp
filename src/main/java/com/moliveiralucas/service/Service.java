@@ -110,24 +110,24 @@ public class Service {
 		lab.setLabID(labID);
 		return negocio.attLabor(lab).toString();
 	}
+	
 	@RequestMapping(value = "/excluirUsr/{usrID}", method = RequestMethod.GET, produces = "application/json")
 	public String excluirUsr(@PathVariable Integer usrID) {
 		Usuario usr = new Usuario();
 		usr.setId(usrID);
 		return negocio.excluiUsr(usr).toString();
 	}
-	@RequestMapping(value = "/excluirExame{exameID}", method = RequestMethod.GET, produces = "application/json")
+	
+	@RequestMapping(value = "/excluirExame/{exameID}", method = RequestMethod.GET, produces = "application/json")
 	public String excluirExame(@PathVariable Integer exameID) {
-		Exame ex = new Exame();
-		ex.setExameID(exameID);
-		return negocio.excluiExame(ex).toString();
+		return negocio.excluiExame(exameID).toString();
 	}
+	
 	@RequestMapping(value = "/excluirLaboratorio/{labID}", method = RequestMethod.GET, produces = "application/json")
 	public String excluirLaboratorio(@PathVariable Integer labID) {
-		Laboratorio lab = new Laboratorio();
-		lab.setLabID(labID);
-		return negocio.excluiLaboratorio(lab).toString();
+		return negocio.excluiLaboratorio(labID).toString();
 	}
+	
 	@RequestMapping(value = "/excluirFilial/{labID}_{endID}", method = RequestMethod.GET, produces = "application/json")
 	public String excluirFilial(@PathVariable Integer labID, @PathVariable Integer endID) {
 		Laboratorio lab = new Laboratorio();
@@ -135,6 +135,7 @@ public class Service {
 		lab.setLabID(labID);
 		return negocio.excluiFilial(lab, end).toString();
 	}
+	
 	@RequestMapping(value = "/excluirExameLaboratorio/{labID}_{exameID}", method = RequestMethod.GET, produces = "application/json")
 	public String excluirExameLaboratorio(@PathVariable Integer labID, @PathVariable Integer exameID) {
 		Laboratorio lab = new Laboratorio();
@@ -142,6 +143,7 @@ public class Service {
 		lab.setLabID(labID);
 		return negocio.excluiExameLaboratorio(lab, ex).toString();
 	}
+	
 	@RequestMapping(value = "/searchUsr/{usuario}", method = RequestMethod.GET, produces = "application/json")
 	public String searchUsr(@PathVariable String usuario) {
 		Usuario usr = new Usuario();
@@ -149,6 +151,7 @@ public class Service {
 		usr = negocio.consultaUsuario(usr);
 		return gson.toJson(usr);
 	}
+	
 	@RequestMapping(value = "/searchLab/{laboratorio}", method = RequestMethod.GET, produces = "application/json")
 	public String searchLab(@PathVariable String laboratorio) {
 		Laboratorio lab = new Laboratorio();
@@ -204,5 +207,6 @@ public class Service {
 	public String searchFilial(@PathVariable Integer labID) {
 		return gson.toJson(negocio.buscarExames(labID));
 	}
+	
 }
 
