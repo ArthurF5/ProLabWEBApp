@@ -238,8 +238,8 @@ public class Negocio {
 		return examePersist.listar();
 	}
 
-	public ArrayList<ExameLaboratorio> buscarExames(Exame exame){
-		return mExameLaboratorioPersist.buscarExameLaboratorio(examePersist.retornarID(exame));
+	public ArrayList<ExameLaboratorio> buscarExames(Integer id){
+		return mExameLaboratorioPersist.buscarExameLaboratorio(id);
 	}
 
 	/**

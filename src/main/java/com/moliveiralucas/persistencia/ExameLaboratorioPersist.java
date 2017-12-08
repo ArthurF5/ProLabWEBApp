@@ -26,7 +26,7 @@ public class ExameLaboratorioPersist {
 		Connection mConnection = null;
 		ResultSet mResultSet = null;
 		Statement mStatement = null;
-		String sql = "SELECT * FROM exameLaboratorio WHERE exameID = "+id;
+		String sql = "SELECT * FROM exameLaboratorio WHERE labID = "+id;
 		mConnection = mConexaoMySQL.abreConexaoBD();
 		try {
 			mStatement = mConnection.createStatement();

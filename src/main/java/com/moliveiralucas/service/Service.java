@@ -113,26 +113,22 @@ public class Service {
 		lab.setLabID(labID);
 		return negocio.attLabor(lab).toString();
 	}
-	@RequestMapping(value = "/excluirUsr/{usuario}_{usrID}", method = RequestMethod.GET, produces = "application/json")
-	public String excluirUsr(@PathVariable String usuario, @PathVariable Integer usrID) {
+	@RequestMapping(value = "/excluirUsr/{usrID}", method = RequestMethod.GET, produces = "application/json")
+	public String excluirUsr(@PathVariable Integer usrID) {
 		Usuario usr = new Usuario();
 		usr.setId(usrID);
-		usr.setUsuario(usuario);
 		return negocio.excluiUsr(usr).toString();
 	}
-	@RequestMapping(value = "/excluirExame/{exame}_{exameID}", method = RequestMethod.GET, produces = "application/json")
-	public String excluirExame(@PathVariable String exame,@PathVariable Integer exameID) {
+	@RequestMapping(value = "/excluirExame{exameID}", method = RequestMethod.GET, produces = "application/json")
+	public String excluirExame(@PathVariable Integer exameID) {
 		Exame ex = new Exame();
-		ex.setExame(exame);
 		ex.setExameID(exameID);
 		return negocio.excluiExame(ex).toString();
 	}
-	@RequestMapping(value = "/excluirLaboratorio/{laboratorio}_{labID}", method = RequestMethod.GET, produces = "application/json")
-	public String excluirLaboratorio(@PathVariable String laboratorio, @PathVariable Integer labID) {
+	@RequestMapping(value = "/excluirLaboratorio/{labID}", method = RequestMethod.GET, produces = "application/json")
+	public String excluirLaboratorio(@PathVariable Integer labID) {
 		Laboratorio lab = new Laboratorio();
 		lab.setLabID(labID);
-		lab.setLaboratorio(laboratorio);
-		Integer retorno = negocio.excluiLaboratorio(lab);
 		return negocio.excluiLaboratorio(lab).toString();
 	}
 	@RequestMapping(value = "/excluirFilial/{labID}_{endID}", method = RequestMethod.GET, produces = "application/json")
@@ -140,7 +136,6 @@ public class Service {
 		Laboratorio lab = new Laboratorio();
 		Endereco end = new Endereco();
 		lab.setLabID(labID);
-		end.setEndID(endID);
 		return negocio.excluiFilial(lab, end).toString();
 	}
 	@RequestMapping(value = "/excluirExameLaboratorio/{labID}_{exameID}", method = RequestMethod.GET, produces = "application/json")
@@ -148,7 +143,6 @@ public class Service {
 		Laboratorio lab = new Laboratorio();
 		Exame ex = new Exame();
 		lab.setLabID(labID);
-		ex.setExameID(exameID);
 		return negocio.excluiExameLaboratorio(lab, ex).toString();
 	}
 	@RequestMapping(value = "/searchUsr/{usuario}", method = RequestMethod.GET, produces = "application/json")
@@ -184,12 +178,9 @@ public class Service {
 		return gson.toJson(negocio.listarExames());
 	}
 
-	@RequestMapping(value = "/searchLabExame/{exameID}", method = RequestMethod.GET, produces = "application/json")
-	public String searchExamePorLab(@PathVariable Integer exameID) {
-		Exame mExame = new Exame();
-		mExame.setExameID(exameID);
-		ArrayList<ExameLaboratorio> mExameLab = negocio.buscarExames(mExame);
-		return gson.toJson(mExameLab);
+	@RequestMapping(value = "/searchLabExame/{labID}", method = RequestMethod.GET, produces = "application/json")
+	public String searchExamePorLab(@PathVariable Integer labID) {
+		return gson.toJson(negocio.buscarExames(labID));
 	}
 
 	@RequestMapping(value = "/searchCidade/{cidade}", method = RequestMethod.GET, produces = "application/json")
@@ -211,4 +202,10 @@ public class Service {
 	public String searchCidadeEstado(@PathVariable Integer estadoID) {
 		return gson.toJson(negocio.buscarCidadePorEstado(estadoID));
 	}
+	
+	@RequestMapping(value = "/searchFilial/{}")
+	public String searchFilial() {
+		return null;
+	}
 }
+
