@@ -128,14 +128,6 @@ public class Service {
 		return negocio.excluiLaboratorio(labID).toString();
 	}
 	
-	@RequestMapping(value = "/excluirFilial/{labID}_{endID}", method = RequestMethod.GET, produces = "application/json")
-	public String excluirFilial(@PathVariable Integer labID, @PathVariable Integer endID) {
-		Laboratorio lab = new Laboratorio();
-		Endereco end = new Endereco();
-		lab.setLabID(labID);
-		return negocio.excluiFilial(lab, end).toString();
-	}
-	
 	@RequestMapping(value = "/excluirExameLaboratorio/{labID}_{exameID}", method = RequestMethod.GET, produces = "application/json")
 	public String excluirExameLaboratorio(@PathVariable Integer labID, @PathVariable Integer exameID) {
 		Laboratorio lab = new Laboratorio();
@@ -150,14 +142,6 @@ public class Service {
 		usr.setUsuario(usuario);
 		usr = negocio.consultaUsuario(usr);
 		return gson.toJson(usr);
-	}
-	
-	@RequestMapping(value = "/searchLab/{laboratorio}", method = RequestMethod.GET, produces = "application/json")
-	public String searchLab(@PathVariable String laboratorio) {
-		Laboratorio lab = new Laboratorio();
-		lab.setLaboratorio(laboratorio);
-		lab = negocio.consultaLaboratorio(lab);
-		return gson.toJson(lab);
 	}
 
 	@RequestMapping(value = "/searchLabs/", method = RequestMethod.GET, produces = "application/json")
@@ -207,6 +191,20 @@ public class Service {
 	public String searchFilial(@PathVariable Integer labID) {
 		return gson.toJson(negocio.buscarExames(labID));
 	}
+
+	@RequestMapping(value = "/SearchLabPorCidade/{cidadeID}", method = RequestMethod.GET, produces = "application/json")
+	public String searchLabCidade(@PathVariable Integer cidadeID) {
+		return gson.toJson(negocio.buscaLaboratorioCidade(cidadeID));
+	}
 	
+	@RequestMapping(value = "/searchLabPorID/{labID}", method = RequestMethod.GET, produces = "application/json")
+	public String searchLabPorID(@PathVariable Integer labID) {
+		return gson.toJson(negocio.buscaLaboratorioPorID(labID)).toString();
+	}
+	
+	@RequestMapping(value = "/searchUFPorID/{ufID}", method = RequestMethod.GET, produces = "application/json")
+	public String searchUFPorID(@PathVariable Integer ufID) {
+		return gson.toJson(negocio.buscaUFPorID(ufID)).toString();
+	}
 }
 

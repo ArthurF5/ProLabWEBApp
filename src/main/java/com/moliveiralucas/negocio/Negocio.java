@@ -196,16 +196,7 @@ public class Negocio {
 		}
 		return codRetorno;
 	}
-	public Integer excluiFilial(Laboratorio lab, Endereco endereco) {
-		Integer excluir, codRetorno = 1;
-		excluir = endPersist.excluirEnderecoLaboratorio(endPersist.retornaID(lab, endereco));
-		if(excluir == 1) {
-			codRetorno = 2;
-		} else {
-			codRetorno = 5;
-		}
-		return codRetorno;
-	}
+	
 	public Integer excluiExameLaboratorio(Laboratorio lab, Exame exame) {
 		Integer excluir, codRetorno = 1;
 		excluir = mExameLaboratorioPersist.excluirExameLaboratorio(exame, lab);
@@ -221,9 +212,6 @@ public class Negocio {
 		return usrPersist.consulta(usr);
 	}
 
-	public Laboratorio consultaLaboratorio(Laboratorio lab) {
-		return labPersist.consulta(lab.getLaboratorio());
-	}
 	public ArrayList<Laboratorio> listarLaboratorios(){
 		return labPersist.listar();
 	}
@@ -275,16 +263,32 @@ public class Negocio {
 	public ArrayList<Cidade> listarCidade(String parametroBusca){
 		return mCidadePersist.listarTodos(parametroBusca);
 	}
+	
 	public Cidade buscarCidade(String parametroBusca) {
 		return mCidadePersist.consulta(parametroBusca);
 	}
+	
 	public ArrayList<Estado> listarEstados(){
 		return mEstadoPersist.listarTodos();
 	}
+	
 	public Estado buscarEstado(String parametroBusca) {
 		return mEstadoPersist.consulta(parametroBusca);
 	}
+	
 	public ArrayList<Cidade> buscarCidadePorEstado(Integer estadoID){
 		return mCidadePersist.buscarPorEstado(estadoID);
+	}
+	
+	public ArrayList<Endereco> buscaLaboratorioCidade(Integer cidadeID){
+		return endPersist.buscarLaboratorioCidade(cidadeID);
+	}
+	
+	public String buscaLaboratorioPorID(Integer id) {
+		return labPersist.buscaPorID(id);
+	}
+	
+	public String buscaUFPorID(Integer id) {
+		return mEstadoPersist.buscaUFPorID(id);
 	}
 }

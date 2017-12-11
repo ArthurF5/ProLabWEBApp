@@ -31,6 +31,26 @@ public class EstadoPersist {
 		}
 		return retorno;
 	}
+	
+	public String buscaUFPorID(Integer id) {
+		mConexaoMySQL = new ConexaoMySQL();
+		Connection mConnection = null;
+		ResultSet mResultSet = null;
+		Statement mStatement = null;
+		mConnection = mConexaoMySQL.abreConexaoBD();
+		String sql = "SELECT nome FROM UF WHERE ufID = "+id;
+		String retorno = "";
+		try {
+			mStatement = mConnection.createStatement();
+			mResultSet = mStatement.executeQuery(sql);
+			if (mResultSet.next()) {
+				retorno = mResultSet.getString("nome");
+			}
+		} catch (SQLException e) {
+			System.out.println("Retorna UF por ID ERROR: "+e.getMessage());
+		}
+		return retorno;
+	}
 
 	public Estado consulta(String parametroBusca) {
 		Estado uf = new Estado();

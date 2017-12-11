@@ -37,6 +37,26 @@ public class LaboratorioPersist {
 		}
 		return retorno;
 	}
+	
+	public String buscaPorID(Integer id) {
+		String retorno = "";
+		mConexaoMySQL = new ConexaoMySQL();
+		Connection mConnection = null;
+		ResultSet mResultSet = null;
+		Statement mStatement = null;
+		mConnection = mConexaoMySQL.abreConexaoBD();
+		String sql = "SELECT laboratorio FROM laboratorio WHERE labID = "+id;
+		try {
+			mStatement = mConnection.createStatement();
+			mResultSet = mStatement.executeQuery(sql);
+			if(mResultSet.next()) {
+				retorno = mResultSet.getString("laboratorio");
+			}
+		} catch (SQLException e) {
+			System.out.println("Busca por laboratorio por ID ERROR: "+e.getMessage());
+		}
+		return retorno;
+	}
 	/**
 	 * Inclui um novo laboratorio no DB
 	 * @param lab - Objeto do tipo Laboratorio
@@ -152,42 +172,7 @@ public class LaboratorioPersist {
 		}
 		return laboratorio;
 	}
-	/**
-	 * Realiza a pesquisa de um laboratorio e seus endereços
-	 * @param parametroBusca
-	 * @return Objeto do tipo Laboratorio
-	 */
-	public Laboratorio consulta(String parametroBusca) {
-		ArrayList<Endereco> endereco = new ArrayList<Endereco>();
-		Laboratorio lab = new Laboratorio();
-		Endereco end = null;
-		mConexaoMySQL = new ConexaoMySQL();
-		Connection mConnection = null;
-		ResultSet mResultSet = null, mResultSetEndereco = null;
-		Statement mStatement = null;
-		mConnection = mConexaoMySQL.abreConexaoBD();
-		String sql = "SELECT * FROM laboratorio WHERE laboratorio = '"+parametroBusca+"'";
-		try {
-			mStatement = mConnection.createStatement();
-			mResultSet = mStatement.executeQuery(sql);
-			if(mResultSet.next()) {
-				lab.setLaboratorio(mResultSet.getString(2));
-				sql = "SELECT * FROM endereco WHERE labID = "+retornaID(lab);
-				mResultSetEndereco = mStatement.executeQuery(sql);
-				while(mResultSetEndereco.next()) {
-					end = new Endereco();
-					end.setEndereco(mResultSetEndereco.getString("laboratorio"));
-					endereco.add(end);
-				}
-				lab.setEndereco(endereco);
-			}else {
-				lab = null;
-			}
-		}catch(SQLException e) {
-			System.out.println("Consulta Laboratorio ERRO: "+e.getMessage());
-		}
-		return lab;
-	}
+	
 //	public Integer retornaEnderecoID(Laboratorio lab) {
 //	Integer retorno = 0;
 //	mConexaoMySQL = new ConexaoMySQL();

@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "Endereco")
 public class Endereco {
 	private Integer endID;
-	private String endereco;
+	private Integer labID;
 	private String logradouro;
 	private String numero;
 	private Integer cidade;
@@ -17,18 +17,6 @@ public class Endereco {
 
 	public void setEndID(Integer endID) {
 		this.endID = endID;
-	}
-
-	public String getEndereco() {
-		return endereco;
-	}
-	
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
-	
-	public void setEndereco(String rua, Integer cidade, Integer estado, String numero) {
-		this.endereco = rua + " " + numero + " " + cidade + " " + estado;
 	}
 
 	public Integer getCidade() {
@@ -61,5 +49,13 @@ public class Endereco {
 
 	public void setEstado(Integer estado) {
 		this.estado = estado;
+	}
+
+	public Integer getLabID() {
+		return labID;
+	}
+
+	public void setLabID(Integer labID) {
+		this.labID = labID;
 	}
 }
