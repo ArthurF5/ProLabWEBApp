@@ -12,7 +12,11 @@ import com.moliveiralucas.modelo.Exame;
 import com.moliveiralucas.modelo.Laboratorio;
 import com.moliveiralucas.modelo.Usuario;
 import com.moliveiralucas.negocio.Negocio;
-
+/**
+ * Classe responsável por receber as requisições do Web Service
+ * @author moliveiralucas
+ *
+ */
 @RestController
 @RequestMapping("/service")
 public class Service {
