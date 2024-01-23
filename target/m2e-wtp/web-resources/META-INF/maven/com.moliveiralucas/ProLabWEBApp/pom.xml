@@ -66,7 +66,7 @@
 
 	<!-- Variaveis/propriedades -->
 	<properties>
-		<spring.version>4.2.1.RELEASE</spring.version>
+		<spring.version>6.0.15</spring.version>
 		<jdk.version>1.7</jdk.version>
 		<servlet.version>3.1.0</servlet.version>
 		<xmlbind.version>2.2.7</xmlbind.version>
